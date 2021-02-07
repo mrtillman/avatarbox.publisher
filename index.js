@@ -6,18 +6,20 @@ const handler = async () => {
     
     const client = new AvbxGravatarClient();
 
-    console.info('collecting all Gravatars not updated in the last 24 hours...');
-
     const emails = await client.collect();
 
-    if(!emails){
+    if(!emails || !emails.length){
       console.info('no Gravatars found');
       return;
     }
 
-    emails.forEach(client.touch.bind(client))
-
-    console.info(`found ${emails.length} Gravatars`);
+    Promise.all(
+      emails.map(email => client.touch(email))
+    ).then(() => {
+      console.info(`found ${emails.length} Gravatars`);
+    }).catch(() => {
+      console.error('publish failed.');
+    })
 
   } catch (err) {
     console.error(err);
