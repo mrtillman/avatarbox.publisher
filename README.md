@@ -5,19 +5,18 @@ hourly update routine for [avatarbox.io](https://avatarbox.io)
 ---
 
 ## Checklist
-
-1. Create an AWS Lambda function named `avbx-publisher`.
+1. Same SQS URL from [avatarbox.sdk](https://github.com/mrtillman/avatarbox.sdk)
+2. AWS Lambda function named `avbx-publisher`
     - set Timeout to 30 seconds
     - assign the `AvbxPublisherRole` which includes the following IAM policies:
       - `AmazonSQSFullAccess`
       - `AmazonDynamoDBFullAccess`
       - `CloudWatchFullAccess`
-      - `AWSLambdaSQSQueueExecutionRole`
+      - `AWSLambdaBasicExecutionRole`
 
-2. Configure the Lambda environment variables:
+3. Lambda environment variables:
 
     ```sh
-    KMS_KEY_ID={YOUR-KMS-KEY-ID}
     REGION=us-east-1
     QUEUE_URL={YOUR-SQS-QUEUE-URL}
     ```
@@ -36,7 +35,7 @@ $ cd avatarbox.publisher && npm install
 $ npm run zip
 ```
 
-Upload `avbx-publisher.zip` to S3 for use in the `avbx-publisher` Lambda function.
+Upload `avbx-publisher.zip` to S3, and retain the S3 URI so you can define the `avbx-publisher` Lambda function.
 
 ### EventBridge Rule
 
