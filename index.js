@@ -13,16 +13,14 @@ const handler = async () => {
       return;
     }
 
-    Promise.all(
+    await Promise.all(
       emails.map(email => client.touch(email))
-    ).then(() => {
-      console.info(`found ${emails.length} Gravatars`);
-    }).catch(() => {
-      console.error('publish failed.');
-    })
-
+    );
+    
+    console.info(`found ${emails.length} Gravatars`);
+    
   } catch (err) {
-    console.error(err);
+    console.error("publish failed: ", err);
     throw err;
   }
 
