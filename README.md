@@ -66,6 +66,4 @@ Upload `avbx-publisher.zip` to S3, and retain the S3 URI so you can define the `
 
 ## License
 
----
-
 [MIT](https://github.com/mrtillman/avatarbox.publisher/blob/main/LICENSE)
