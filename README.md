@@ -6,7 +6,7 @@ hourly update routine for [avatarbox.io](https://avatarbox.io)
 
 ## Description
 
-**avatarbox.publisher** is a Lambda function that identifies all Gravatar icons in the ready state, and then notifies [avatarbox.worker](https://github.com/mrtillman/avatarbox.worker) via SQS. An EventBridge rule triggers this function once per hour. The ready state is defined as any Gravatar icon that has not been updated in the past 24 hours.
+**avatarbox.publisher** is a Lambda function that identifies all Gravatar icons in the [Ready State](https://github.com/mrtillman/avatarbox.sdk/wiki/Glossary#ready-state), and then notifies [avatarbox.worker](https://github.com/mrtillman/avatarbox.worker) via SQS. An EventBridge rule triggers this function once per hour.
 
 ## Checklist
 1. Same SQS URL from [avatarbox.sdk](https://github.com/mrtillman/avatarbox.sdk)
