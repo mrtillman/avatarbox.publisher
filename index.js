@@ -6,18 +6,18 @@ const handler = async () => {
     
     const client = new AvbxGravatarClient();
 
-    const emails = await client.collect();
+    const icons = await client.collect();
 
-    if(!emails || !emails.length){
+    if(!icons || !icons.length){
       console.info('no Gravatars found');
       return;
     }
-
+    
     await Promise.all(
-      emails.map(email => client.touch(email))
+      icons.map(icon => client.touch(icon.email))
     );
     
-    console.info(`found ${emails.length} Gravatars`);
+    console.info(`found ${icons.length} Gravatars`);
     
   } catch (err) {
     console.error("publish failed: ", err);
