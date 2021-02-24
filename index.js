@@ -8,8 +8,10 @@ const handler = async () => {
 
     const icons = await client.collect();
 
-    if(!icons || !icons.length) return;
-    
+    if(!icons || !icons.length) {
+      console.info("found 0 Gravatars");  
+    }
+
     await Promise.all(
       icons.map(icon => client.touch(icon.email))
     );
