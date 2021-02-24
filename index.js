@@ -8,10 +8,7 @@ const handler = async () => {
 
     const icons = await client.collect();
 
-    if(!icons || !icons.length){
-      console.info('no Gravatars found');
-      return;
-    }
+    if(!icons || !icons.length) return;
     
     await Promise.all(
       icons.map(icon => client.touch(icon.email))
