@@ -9,7 +9,8 @@ const handler = async () => {
     const icons = await client.collect();
 
     if(!icons || !icons.length) {
-      console.info("found 0 Gravatars");  
+      console.info("found 0 Gravatars");
+      return;
     }
 
     await Promise.all(
@@ -26,3 +27,5 @@ const handler = async () => {
 };
 
 exports.handler = handler;
+
+handler()
