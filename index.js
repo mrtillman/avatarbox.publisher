@@ -14,7 +14,7 @@ const handler = async () => {
     }
 
     await Promise.all(
-      icons.map(icon => client.touch(icon.email))
+      icons.map(icon => client.touch(icon.id))
     );
     
     console.info(`found ${icons.length} Gravatars`);

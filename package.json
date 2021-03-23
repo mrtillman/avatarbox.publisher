@@ -4,7 +4,7 @@
   "description": "hourly update routine for avatarbox.io",
   "main": "index.js",
   "dependencies": {
-    "avatarbox.sdk": "0.0.7"
+    "avatarbox.sdk": "0.0.8"
   },
   "scripts": {
     "zip": "rm -f avbx-publisher.zip && zip -r avbx-publisher.zip ."
