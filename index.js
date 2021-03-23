@@ -4,9 +4,9 @@ const handler = async () => {
 
   try {
     
-    const client = new AvbxGravatarClient();
+    const avbx = new AvbxGravatarClient();
 
-    const icons = await client.collect();
+    const icons = await avbx.collect();
 
     if(!icons || !icons.length) {
       console.info("found 0 Gravatars");
@@ -14,7 +14,7 @@ const handler = async () => {
     }
 
     await Promise.all(
-      icons.map(icon => client.touch(icon.id))
+      icons.map(icon => avbx.touch(icon.id))
     );
     
     console.info(`found ${icons.length} Gravatars`);
