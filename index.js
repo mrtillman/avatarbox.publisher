@@ -1,21 +1,29 @@
 const { AvbxGravatarClient } = require('avatarbox.sdk');
+const { partition } = require('./partition');
 
 const handler = async () => {
 
   try {
     
     const avbx = new AvbxGravatarClient();
-
     const icons = await avbx.collect();
+    const process = icons => (
+      avbx.touch(...icons.map(icon => icon.id))
+    );
 
     if(!icons || !icons.length) {
       console.info("found 0 Gravatars");
       return;
     }
 
-    Promise.all(
-      icons.map(icon => avbx.touch(icon.id))
-    );
+    if(icons.length <= 10){
+      process(icons);
+    } else {
+      const batches = partition(icons);
+      Promise.all(
+        batches.map(process)
+      );
+    }
     
     console.info(`found ${icons.length} Gravatars`);
     
