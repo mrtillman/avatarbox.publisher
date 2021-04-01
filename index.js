@@ -13,7 +13,7 @@ const handler = async () => {
       return;
     }
 
-    await Promise.all(
+    Promise.all(
       icons.map(icon => avbx.touch(icon.id))
     );
     
