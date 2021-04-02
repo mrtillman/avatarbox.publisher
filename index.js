@@ -17,10 +17,10 @@ const handler = async () => {
     }
 
     if(icons.length <= 10){
-      process(icons);
+      await process(icons);
     } else {
       const batches = partition(icons);
-      Promise.all(
+      await Promise.all(
         batches.map(process)
       );
     }
