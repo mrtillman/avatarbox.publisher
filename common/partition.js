@@ -11,4 +11,4 @@ function partition(collection){
   return result;
 }
 
-module.exports = { partition };
+module.exports = { partition }
