@@ -1,37 +1,20 @@
-const { AvbxGravatarClient } = require('avatarbox.sdk');
-const { partition } = require('./partition');
+const { 
+  CollectGravatarIcons,
+  CollectTwitterIcons
+} = require("./application");
+const { partition } = require("./common/partition");
 
 const handler = async () => {
-
-  try {
-    
-    const avbx = new AvbxGravatarClient();
-    const icons = await avbx.collect();
-    const process = icons => (
-      avbx.touch(...icons.map(icon => icon.id))
-    );
-
-    if(!icons || !icons.length) {
-      console.info("found 0 Gravatars");
-      return;
-    }
-
-    if(icons.length <= 10){
-      await process(icons);
-    } else {
-      const batches = partition(icons);
-      await Promise.all(
-        batches.map(process)
-      );
-    }
-    
-    console.info(`found ${icons.length} Gravatars`);
-    
-  } catch (err) {
-    console.error("publish failed: ", err);
-    throw err;
-  }
+ 
+  // TODO:
+  // collect gravatar icons
+  // collect twitter icons
+  // partition collection
+  // send sqs messages
+  // handle errors
 
 };
+
+handler();
 
 exports.handler = handler;
