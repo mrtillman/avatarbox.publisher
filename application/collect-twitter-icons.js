@@ -4,8 +4,8 @@ class CollectTwitterIcons {
   constructor(){
     this.client = new AvbxTwitterClient()
   }
-  execute(){
-    //this.client...
+  async execute(){
+    return await this.client.collect() || [];
   }
 }
 

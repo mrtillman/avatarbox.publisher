@@ -4,8 +4,8 @@ class CollectGravatarIcons {
   constructor(){
     this.client = new AvbxGravatarClient()
   }
-  execute(){
-    //this.client...
+  async execute(){
+    return await this.client.collect() || [];
   }
 }
 
