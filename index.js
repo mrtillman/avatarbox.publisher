@@ -1,20 +1,24 @@
 const { 
   CollectGravatarIcons,
-  CollectTwitterIcons
+  CollectTwitterIcons,
+  ProcessIcons
 } = require("./application");
-const { partition } = require("./common/partition");
+
+const collectGravatarIcons = new CollectGravatarIcons();
+const collectTwitterIcons = new CollectTwitterIcons();
 
 const handler = async () => {
- 
-  // TODO:
-  // collect gravatar icons
-  // collect twitter icons
-  // partition collection
-  // send sqs messages
-  // handle errors
-
+  try {    
+    const gravatarIcons = await collectGravatarIcons.execute();
+    const twitterIcons = await collectTwitterIcons.execute();
+    const processIcons = new ProcessIcons([
+      ...gravatarIcons, ...twitterIcons
+    ]);
+    await processIcons.execute();
+  } catch (error) {
+    console.error("publish failed: ", error);
+    throw error;
+  }
 };
-
-handler();
 
 exports.handler = handler;
