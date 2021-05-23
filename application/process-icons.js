@@ -6,8 +6,6 @@ class ProcessIcons {
   constructor(icons){
     this.icons = icons;
     this.sqs = new SQSService();
-    this.gravatarIcons = [];
-    this.twitterIcons = [];
   }
   process(icons){
     return this.sqs.touch(...icons);
