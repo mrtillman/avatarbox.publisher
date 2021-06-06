@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "hourly update routine for avatarbox.io",
   "main": "index.js",
-  "dependencies": {
-    "avatarbox.sdk": "^1.2.3"
-  },
   "scripts": {
     "zip": "rm -f avbx-publisher.zip && zip -r avbx-publisher.zip ."
   },
@@ -23,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/mrtillman/avatarbox.publisher/issues"
   },
-  "homepage": "https://github.com/mrtillman/avatarbox.publisher#readme"
+  "homepage": "https://github.com/mrtillman/avatarbox.publisher#readme",
+  "dependencies": {
+    "avatarbox.sdk": "^1.2.5"
+  }
 }
